@@ -10,8 +10,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.demo.sporty.entity.add2cart.Add2Cart;
+import com.demo.sporty.entity.purchased.Purchased;
 import com.demo.sporty.entity.role.Role;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -19,6 +22,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,6 +49,12 @@ public class User implements UserDetails {
 	private String email;
 	
 	private String password;
+	
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	private Add2Cart add2Cart;
+	
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	private Purchased purchased;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Role> roles = new HashSet<>();
@@ -82,6 +92,22 @@ public class User implements UserDetails {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+	
+	public Add2Cart getAdd2Cart() {
+		return add2Cart;
+	}
+
+	public void setAdd2Cart(Add2Cart add2Cart) {
+		this.add2Cart = add2Cart;
+	}
+
+	public Purchased getPurchased() {
+		return purchased;
+	}
+
+	public void setPurchased(Purchased purchased) {
+		this.purchased = purchased;
 	}
 
 	public void setPassword(String password) {
