@@ -6,4 +6,5 @@ import com.demo.sporty.payload.ShowUsers;
 
 public interface ShowUsersRepository extends JpaRepository<ShowUsers,Integer> {
 
+	public ShowUsers findByEmail(String email);
 }

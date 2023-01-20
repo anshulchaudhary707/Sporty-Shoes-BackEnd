@@ -8,5 +8,5 @@ import com.demo.sporty.payload.ShowPurchasedList;
 
 public interface ShowPurchasedListRepository extends JpaRepository<ShowPurchasedList, Integer> {
 
-	List<ShowPurchasedList> findByOrderByShowPurchasedListDateDesc();
+	List<ShowPurchasedList> findByOrderByDateDesc();
 }

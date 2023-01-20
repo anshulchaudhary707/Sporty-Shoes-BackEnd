@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.demo.sporty.entity.shoes.Category;
 import com.demo.sporty.entity.shoes.Shoes;
 import com.demo.sporty.payload.ApiResponse;
+import com.demo.sporty.payload.SearchUser;
 import com.demo.sporty.service.AuthenticationService;
 import com.demo.sporty.service.ShoesService;
 import com.demo.sporty.payload.ShowUsers;
@@ -57,5 +58,10 @@ public class AdminController {
 	@GetMapping("/allPurchases")
 	public List<ShowPurchasedList> allPurchases() {
 		return service.getAllPurchased();
+	}
+	
+	@PostMapping("/searchUser")
+	public ShowUsers search(@RequestBody SearchUser u1){
+		return service.searchUser(u1);
 	}
 }

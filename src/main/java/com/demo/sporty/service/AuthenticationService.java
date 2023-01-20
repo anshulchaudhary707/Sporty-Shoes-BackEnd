@@ -22,6 +22,7 @@ import com.demo.sporty.payload.AuthenticationRequest;
 import com.demo.sporty.payload.AuthenticationResponse;
 import com.demo.sporty.payload.ChangePassword;
 import com.demo.sporty.payload.RegisterRequest;
+import com.demo.sporty.payload.SearchUser;
 import com.demo.sporty.repository.RoleRepository;
 import com.demo.sporty.repository.UserRepository;
 import com.demo.sporty.security.JwtService;
@@ -191,6 +192,10 @@ public class AuthenticationService {
 	}
 	
 	public List<ShowPurchasedList> getAllPurchased(){
-		return splr.findByOrderByShowPurchasedListDateDesc();
+		return splr.findByOrderByDateDesc();
+	}
+	
+	public ShowUsers searchUser(SearchUser u1) {
+		return sur.findByEmail(u1.getEmail());
 	}
  }
